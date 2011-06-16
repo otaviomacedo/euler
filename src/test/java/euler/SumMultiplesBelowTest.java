@@ -5,6 +5,9 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Problem 1
+ */
 public class SumMultiplesBelowTest {
 
     @Test
@@ -29,7 +32,6 @@ public class SumMultiplesBelowTest {
     @Test
     public void testname() throws Exception {
         SumMultiplesBelow sum = new SumMultiplesBelow(1000);
-        System.out.println(sum.calculate(3, 5));
-
+        assertThat(sum.calculate(3, 5), is(233168));
     }
 }
