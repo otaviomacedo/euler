@@ -4,7 +4,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class LargestPrimeFactorTest {
+public class Problem003Test {
 
     @Test
     public void test() throws Exception{

@@ -8,7 +8,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.core.Is.*;
 import static org.junit.Assert.assertThat;
 
-public class DivisibleOverRangeTest {
+public class Problem005Test {
 
     @Test
     public void test1() throws Exception {

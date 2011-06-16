@@ -5,10 +5,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Problem 1
- */
-public class SumMultiplesBelowTest {
+public class Problem001Test {
 
     @Test
     public void test1() throws Exception{
