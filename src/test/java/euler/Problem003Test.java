@@ -15,4 +15,15 @@ public class Problem003Test {
     public void testname() throws Exception {
         assertThat(LargestPrimeFactor.forNumber(600851475143L), is(6857L));
     }
+
+    @Test
+    public void testname1() throws Exception {
+        assertThat(LargestPrimeFactor.forNumber(94L), is(47L));
+    }
+
+    @Test
+    public void maxNumber() throws Exception {
+        assertThat(LargestPrimeFactor.forNumber(Long.MAX_VALUE), is(649657L));
+    }
+
 }

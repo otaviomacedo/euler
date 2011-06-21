@@ -1,7 +1,5 @@
 package euler;
 
-import static java.lang.Math.sqrt;
-
 public class LargestPrimeFactor {
     public static long forNumber(long number) {
         long dividend = number;
@@ -14,7 +12,7 @@ public class LargestPrimeFactor {
         }
         divisor++;
 
-        while (divisor <= sqrt(number)){
+        while (divisor <= dividend){
             if (dividend % divisor == 0){
                 dividend /= divisor;
                 largestPrime = divisor;
