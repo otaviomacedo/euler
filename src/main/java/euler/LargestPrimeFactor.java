@@ -6,19 +6,18 @@ public class LargestPrimeFactor {
         long divisor = 2;
         long largestPrime = divisor;
 
-        if (dividend % divisor == 0){
-            dividend /= divisor;
-            largestPrime = divisor;
-        }
-        divisor++;
-
         while (divisor <= dividend){
             if (dividend % divisor == 0){
                 dividend /= divisor;
                 largestPrime = divisor;
             }
-            divisor+=2;
+            divisor = inc(divisor);
         }
         return largestPrime;
+    }
+
+    private static long inc(long divisor){
+        long increment = divisor == 2 ? 1 : 2;
+        return divisor + increment;
     }
 }
