@@ -9,13 +9,13 @@ import java.util.SortedSet;
 public class LexicographicalPermutations {
 
     public static List<Integer> nthPermutationOf(long n, SortedSet<Integer> set){
-        List<Integer> foo = foo(0, n - 1, set, Lists.<Integer>newArrayList());
+        List<Integer> foo = search(0, n - 1, set, Lists.<Integer>newArrayList());
         foo.addAll(set);
         return foo;
     }
 
 
-    private static List<Integer> foo(long acc, long limit, SortedSet<Integer> toOrder, List<Integer> ordered){
+    private static List<Integer> search(long acc, long limit, SortedSet<Integer> toOrder, List<Integer> ordered){
         if (acc == limit){
             return ordered;
         }
@@ -27,6 +27,6 @@ public class LexicographicalPermutations {
         toOrder.remove(nextOrderedElement);
         ordered.add(nextOrderedElement);
 
-        return foo(acc + position * factorial, limit, toOrder, ordered);
+        return search(acc + position * factorial, limit, toOrder, ordered);
     }
 }
