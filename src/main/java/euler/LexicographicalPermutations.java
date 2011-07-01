@@ -16,23 +16,27 @@ public class LexicographicalPermutations {
         return incomplete;
     }
 
-    private static List<Integer> search(BigInteger limit, SortedSet<Integer> toOrder){
-        BigInteger acc = BigInteger.ZERO;
-        List<Integer> ordered = newArrayList();
-        BigInteger factorial = Factorial.of(BigInteger.valueOf(toOrder.size() - 1));
+    private static List<Integer> search(BigInteger targetPosition, SortedSet<Integer> elementsToPermutate){
+        BigInteger currentPosition = BigInteger.ZERO;
+        List<Integer> permutated = newArrayList();
+        BigInteger smallestPossiblePosition = Factorial.of(BigInteger.valueOf(elementsToPermutate.size() - 1));
 
-        while (!acc.equals(limit)){
-            int position = limit.subtract(acc).divide(factorial).intValue();
+        while (!currentPosition.equals(targetPosition)){
+            BigInteger index = targetPosition.subtract(currentPosition).divide(smallestPossiblePosition);
 
-            Integer nextOrderedElement = Iterables.get(toOrder, position);
+            Integer element = Iterables.get(elementsToPermutate, index.intValue());
 
-            toOrder.remove(nextOrderedElement);
-            ordered.add(nextOrderedElement);
+            elementsToPermutate.remove(element);
+            permutated.add(element);
 
-            acc = acc.add(factorial.multiply(BigInteger.valueOf(position)));
-            factorial = factorial.divide(BigInteger.valueOf(toOrder.size()));
+            currentPosition = currentPosition.add(smallestPossiblePosition.multiply(index));
+            smallestPossiblePosition = smallestPossiblePosition.divide(sizeOf(elementsToPermutate));
         }
 
-        return ordered;
+        return permutated;
+    }
+
+    private static BigInteger sizeOf(SortedSet<Integer> toOrder) {
+        return BigInteger.valueOf(toOrder.size());
     }
 }
