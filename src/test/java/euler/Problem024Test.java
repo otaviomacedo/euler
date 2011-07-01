@@ -31,7 +31,7 @@ public class Problem024Test {
     @Test
     public void monstrous() throws Exception {
         SortedSet<Integer> input = newTreeSet();
-        for (int i = 0; i < 4405; i++) {
+        for (int i = 0; i < 30000; i++) {
             input.add(i);
         }
 
