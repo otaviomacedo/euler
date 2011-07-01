@@ -28,14 +28,14 @@ public class Problem024Test {
         assertThat(nthPermutationOf(1000000, sortedSet(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)), is(millionthPermutation));
     }
 
-    @Test(timeout = 60000)//rule of thumb
+    @Test
     public void monstrous() throws Exception {
         SortedSet<Integer> input = newTreeSet();
-        for (int i = 0; i < 2500; i++) {
+        for (int i = 0; i < 4405; i++) {
             input.add(i);
         }
 
-        nthPermutationOf(1000000, input);
+        nthPermutationOf(2500000, input);
     }
 
     private SortedSet<Integer> sortedSet(Integer... values) {
