@@ -35,7 +35,7 @@ public class Problem024Test {
             input.add(i);
         }
 
-        nthPermutationOf(2500000, input);
+        nthPermutationOf(Long.MAX_VALUE, input);
     }
 
     private SortedSet<Integer> sortedSet(Integer... values) {

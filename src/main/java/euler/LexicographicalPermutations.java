@@ -3,6 +3,7 @@ package euler;
 import com.google.common.collect.Iterables;
 
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.List;
 import java.util.SortedSet;
 
@@ -50,15 +51,12 @@ public class LexicographicalPermutations {
     private static <E> List<E> assemble(BigInteger targetPosition, SortedSet<E> elementsToPermutate) {
         List<E> permutation = newArrayList();
         BigInteger currentPosition = BigInteger.ZERO;
-        BigInteger sublistSize = Factorial.of(BigInteger.valueOf(elementsToPermutate.size() - 1));
+        BigInteger sublistSize = Factorial.of(elementsToPermutate.size() - 1);
 
         while (!currentPosition.equals(targetPosition)) {
             BigInteger sublistIndex = targetPosition.subtract(currentPosition).divide(sublistSize);
 
-            E element = Iterables.get(elementsToPermutate, sublistIndex.intValue());
-
-            elementsToPermutate.remove(element);
-            permutation.add(element);
+            move(sublistIndex, elementsToPermutate, permutation);
 
             currentPosition = currentPosition.add(sublistSize.multiply(sublistIndex));
             sublistSize = sublistSize.divide(sizeOf(elementsToPermutate));
@@ -69,5 +67,15 @@ public class LexicographicalPermutations {
 
     private static BigInteger sizeOf(SortedSet<?> toOrder) {
         return BigInteger.valueOf(toOrder.size());
+    }
+
+    private static <E> void move(BigInteger index, Collection<E> from, Collection<E> to){
+        E element = get(from, index);
+        from.remove(element);
+        to.add(element);
+    }
+
+    private static <E> E get(Collection<E> set, BigInteger index){
+        return Iterables.get(set, Integer.valueOf(index.toString()));
     }
 }

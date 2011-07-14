@@ -12,5 +12,7 @@ public class Factorial {
         return result;
     }
 
-
+    public static BigInteger of(long n){
+        return of(BigInteger.valueOf(n));
+    }
 }
