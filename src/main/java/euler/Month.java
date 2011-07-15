@@ -13,17 +13,21 @@ public class Month {
     }
 
     public int numberOfDays() {
-        // February
-        if (number == 2) {
-            if (year % 4 == 0) {
-                if (year % 100 != 0) {
-                    return 29;
-                }
-            }
-            return 28;
-        } else {
-            return ImmutableList.of(9, 4, 6, 11).contains(number) ? 30 : 31;
-        }
+        return isFebruary()
+                ? isLeapYear() ? 29 : 28
+                : isThirtyDaysMonth() ? 30 : 31;
+    }
+
+    private boolean isThirtyDaysMonth() {
+        return ImmutableList.of(9, 4, 6, 11).contains(number);
+    }
+
+    private boolean isFebruary() {
+        return number == 2;
+    }
+
+    private boolean isLeapYear() {
+        return year % 4 == 0 && year % 100 != 0;
     }
 
     public Month next() {
@@ -43,35 +47,25 @@ public class Month {
 
         Month month = (Month) o;
 
-        if (number != month.number) {
-            return false;
-        }
-        if (year != month.year) {
-            return false;
-        }
-
-        return true;
+        return number == month.number && year == month.year;
     }
 
     @Override
     public int hashCode() {
-        int result = number;
-        result = 31 * result + year;
-        return result;
+        return number;
     }
-
 
     @Override
     public String toString() {
         return String.format("%d/%d", number, year);
     }
 
-    public static int countWeekDaysIn(WeekDay weekDay, Month firstMonth, Month lastMonth){
+    public static int countWeekDaysIn(WeekDay weekDay, Month firstMonth, Month lastMonth) {
         int count = 0;
-        while (!firstMonth.equals(lastMonth)){
+        while (!firstMonth.equals(lastMonth)) {
             weekDay = weekDay.plusDays(firstMonth.numberOfDays());
             firstMonth = firstMonth.next();
-            if (weekDay == WeekDay.SUNDAY){
+            if (weekDay == WeekDay.SUNDAY) {
                 count++;
             }
         }
